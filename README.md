@@ -1,41 +1,62 @@
-# Automate Job Search
+<div align="center">
 
-A Python script that scrapes **Artificial Intelligence (AI) internships** from [Internshala](https://internshala.com), stores them in a SQLite database, and reports newly posted internships.
+# 🚀 Automate Job Search
 
-## Features
+**Smart Internship Monitor** — scrapes AI internships from [Internshala](https://internshala.com), tracks them in SQLite, and flags the ones that are **new**.
 
-- Scrapes AI internship listings from the first 3 pages of Internshala
-- Extracts title, company, location, stipend, skills, and job URL
-- Stores internships in a local SQLite database (`internships.db`)
-- Detects and prints only **new** internships on each run (duplicates are skipped)
-- Outputs scraped data to a CSV file (`web_scrap_internship.csv`)
+![Python](https://img.shields.io/badge/Python-3.13+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Requests](https://img.shields.io/badge/Requests-2F74C0?style=for-the-badge&logo=python&logoColor=white)
+![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup-3A9E3A?style=for-the-badge&logo=python&logoColor=white)
 
-## Folder Structure
+</div>
+
+---
+
+## ✨ Features
+
+| | |
+|---|---|
+| 🕷️ **Scrapes** | AI internship listings from pages 1–3 of Internshala |
+| 📋 **Extracts** | title, company, location, stipend, skills & job URL |
+| 🗄️ **Stores** | everything into a local SQLite database |
+| 🆕 **Detects new jobs** | only brand-new listings are reported, duplicates skipped |
+| 📄 **CSV export** | scraped data saved to `web_scrap_internship.csv` |
+
+---
+
+## 📁 Folder Structure
 
 ```
 automate-job-search/
-├── .intersala/              # Python virtual environment
+├── .intersala/              🐍 Python virtual environment
 │   └── Scripts/
-│       └── activate.bat     # Activation script (Windows)
-├── .deepeval/               # DeepEval workspace
+│       └── activate.bat     ⚡ Activation script (Windows)
+├── .deepeval/               🧪 DeepEval workspace
 ├── notebook/
-│   └── internsala.ipynb     # Jupyter notebook for experiments
-├── __pycache__/             # Python bytecode cache (gitignored)
+│   └── internsala.ipynb     📓 Jupyter notebook for experiments
+├── __pycache__/             💾 Python bytecode cache (gitignored)
 ├── .gitignore
-├── database.py              # SQLite helpers (create_table, is_new_job, save_job)
-├── internships.db           # SQLite database of scraped internships
-├── main.py                  # Entry point: scrape, compare, and report new jobs
-├── requirements.txt         # Python dependencies
-├── scraper.py               # Internshala web scraper
-└── web_scrap_internship.csv # Exported scraped internship data
+├── database.py              🗄️ SQLite helpers (create_table, is_new_job, save_job)
+├── internships.db           📦 SQLite database of scraped internships
+├── main.py                  🚀 Entry point: scrape, compare & report new jobs
+├── requirements.txt         📦 Python dependencies
+├── scraper.py               🕷️ Internshala web scraper
+└── web_scrap_internship.csv 📄 Exported scraped internship data
 ```
 
-## Prerequisites
+---
 
-- Python 3.13+
-- Windows (venv activation commands below are Windows-specific)
+## 🔧 Prerequisites
 
-## Setup
+- **Python 3.13+**
+- **Windows** (activation commands below are Windows-specific)
+
+---
+
+## 🛠️ Setup
+
+### Option 1 — Use the existing virtual environment
 
 ```bash
 # 1. Activate the virtual environment (Windows)
@@ -45,7 +66,7 @@ C:\projects\automate-job-search\.intersala\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
-Alternatively, create your own environment:
+### Option 2 — Create your own environment
 
 ```bash
 python -m venv .intersala
@@ -53,7 +74,9 @@ python -m venv .intersala
 pip install -r requirements.txt
 ```
 
-## Usage
+---
+
+## ▶️ Usage
 
 Run the scraper:
 
@@ -63,38 +86,58 @@ python main.py
 
 On each run, `main.py`:
 1. Creates the `internships` table if it doesn't exist
-2. Scrapes internships from Internshala (pages 1-3)
+2. Scrapes internships from Internshala (pages 1–3)
 3. Compares each listing against the database
-4. Prints `NEW JOB` for new internships and saves them to `internships.db`
+4. Prints `🆕 NEW JOB` for new internships and saves them to `internships.db`
 5. Prints a summary of total new internships found
 
-> **Note:** Run the script **every day** to catch newly posted internships. Any listing that was not already in your database will be reported as `NEW JOB` along with a count of new internships found.
+> ### ⏰ Daily Monitoring
+>
+> Run the script **every day** to catch newly posted internships.
+> Any listing that was **not already in your database** will be reported as `NEW JOB`,
+> along with a count of how many new internships were found.
 
-## Database Schema
+---
 
-Table: `internships`
+## 🗄️ Database Schema
 
-| Column      | Type      | Notes                          |
-|-------------|-----------|--------------------------------|
-| id          | INTEGER   | Primary key, auto-increment    |
-| title       | TEXT      | Required, internship title     |
-| company     | TEXT      | Company name                   |
-| location    | TEXT      | Internship location(s)         |
-| stipend     | TEXT      | Stipend amount                 |
-| skills      | TEXT      | Required skills                |
-| url         | TEXT      | Unique job listing URL         |
-| created_at  | TIMESTAMP | Defaults to current timestamp  |
-| email_sent  | INTEGER   | Defaults to 0 (reserved)       |
+**Table:** `internships`
 
-## Dependencies
+| Column      | Type      | Notes                         |
+|-------------|-----------|-------------------------------|
+| `id`        | INTEGER   | Primary key, auto-increment   |
+| `title`     | TEXT      | Required, internship title    |
+| `company`   | TEXT      | Company name                  |
+| `location`  | TEXT      | Internship location(s)        |
+| `stipend`   | TEXT      | Stipend amount                |
+| `skills`    | TEXT      | Required skills               |
+| `url`       | TEXT      | Unique job listing URL        |
+| `created_at`| TIMESTAMP | Defaults to current timestamp |
+| `email_sent`| INTEGER   | Defaults to 0 (reserved)      |
 
-- `requests` – HTTP requests to Internshala
-- `beautifulsoup4` – HTML parsing
-- `lxml` – fast HTML parser
-- `pandas` – CSV export
+---
 
-## Notes
+## 📦 Dependencies
 
-- The virtual environment (`.intersala/`) and `__pycache__/` are gitignored.
-- Scraping respects a 2-second delay between page requests.
-- A browser `User-Agent` header is used to avoid request blocking.
+| Package         | Purpose                        |
+|-----------------|--------------------------------|
+| `requests`      | HTTP requests to Internshala   |
+| `beautifulsoup4`| HTML parsing                   |
+| `lxml`          | Fast HTML parser               |
+| `pandas`        | CSV export                     |
+
+---
+
+## 📝 Notes
+
+- 🚫 The virtual environment (`.intersala/`) and `__pycache__/` are gitignored.
+- ⏳ Scraping respects a **2-second delay** between page requests.
+- 🛡️ A browser `User-Agent` header is used to avoid request blocking.
+
+---
+
+<div align="center">
+
+Made with ❤️ for the daily job hunt
+
+</div>
