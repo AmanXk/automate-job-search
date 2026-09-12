@@ -138,6 +138,6 @@ On each run, `main.py`:
 
 <div align="center">
 
-Made with ❤️ for the daily job hunt
+Made with ❤️ for the daily hunt job
 
 </div>
