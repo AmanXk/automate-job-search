@@ -131,7 +131,7 @@ On each run, `main.py`:
 ## 📝 Notes
 
 - 🚫 The virtual environment (`.intersala/`) and `__pycache__/` are gitignored.
-- ⏳ Scraping respect a **2-second delay** between page requests
+- ⏳ Scraping respect a **2-second delay** between page requests.
 - 🛡️ A browser `User-Agent` header is used to avoid request blocking.
 
 ---
